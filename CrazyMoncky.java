@@ -16,7 +16,7 @@ public class CrazyMoncky {
     * 2: 每小时两元
     */
     private static int calParkingFee(int parkingDur) {
-        int fee = 0; // free untill open
+        int fee = 2; // free untill open
         return fee; 
     }
     
