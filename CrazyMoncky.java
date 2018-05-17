@@ -14,12 +14,39 @@ public class CrazyMoncky {
     * 计费规则
     * 1: 半小时内免费
     * 2: 每小时两元
-    */
-    private static int calParkingFee(int parkingDur) {
-        int fee = 2; // free untill open
-        return fee; 
-    }
     
+	*/
+    private static int calParkingFee(int parkingDur) {
+         // free untill open
+		int fee = 0;
+		if (parkingDur<=1800)
+        {
+			return  0 ; 
+		}
+		else if(parkingDur>1800 & parkingDur<=3600)
+		{
+			return 200 ;
+		}
+		
+		else if(parkingDur>3600 & parkingDur%3600==0)
+		{
+			return parkingDur/3600*200 ;
+		}
+		
+		else if (parkingDur>3600 & (parkingDur%3600)>0)
+		{
+			return ((int)(parkingDur/3600)*200+200);
+		}
+		else
+		{
+			return  0;
+		}
+		
+	}
+		
+		 
+    
+
 
     /**
      * 输入两个时间，计算停车费用并打印
