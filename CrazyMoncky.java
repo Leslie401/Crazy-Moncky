@@ -6,7 +6,7 @@ import static java.lang.Math.toIntExact;
 
 public class CrazyMoncky {
 
-    /**
+    /*
     * 计算停车费用 
     * @param parkingDur 停车时间，单位 秒 
     * @return 停车费用， 单位 分
@@ -14,14 +14,33 @@ public class CrazyMoncky {
     * 计费规则
     * 1: 半小时内免费
     * 2: 每小时两元
-    */
+    
+	*/
     private static int calParkingFee(int parkingDur) {
-        int fee = 0; // free untill open
-        return fee; 
-    }
+         // free untill open
+		if(parkingDur<=1800)
+		{
+			return 0; 
+		}
+		else if(parkingDur>1800 & parkingDur<=3600)
+		{
+			return 200;
+		}
+		else if(parkingDur>3600 & parkingDur%3600==0)
+		{
+			return parkingDur/3600*200;
+		}
+		else//(parkingDur>3600 & (parkingDur%3600)>0)
+		{
+			return parkingDur/3600*200+200;
+		}
+	}
+		
+		 
     
 
-    /**
+
+    /*
      * 输入两个时间，计算停车费用并打印
      * java CrazyMoncky '2018-01-01 00:00:00' '2018-01-01 01:00:00'
      */
