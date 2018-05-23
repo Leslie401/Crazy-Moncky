@@ -19,7 +19,7 @@ public class CrazyMoncky {
     private static int calParkingFee(int parkingDur) {
          // free untill open
 		if(parkingDur<=1800)
-        {
+		{
 			return 0; 
 		}
 		else if(parkingDur>1800 & parkingDur<=3600)
