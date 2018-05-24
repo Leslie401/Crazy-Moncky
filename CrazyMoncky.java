@@ -20,23 +20,20 @@ public class CrazyMoncky {
     
 	*/
     private static int calParkingFee(int parkingDur) {
-         // free untill open
-		if(parkingDur<=1800)
-		{
-			return 0; 
-		}
-		else if(parkingDur>1800 & parkingDur<=3600)
-		{
-			return 200;
-		}
-		else if(parkingDur>3600 & parkingDur%3600==0)
-		{
-			return parkingDur/3600*200;
-		}
-		else//(parkingDur>3600 & (parkingDur%3600)>0)
-		{
-			return parkingDur/3600*200+200;
-		}
+        int parkingHour ;
+        int feePerHour = 200;  // 每小时2元
+
+        if (parkingDur >= 1800) {
+            parkingHour = parkingDur / 3600;
+            if (parkingDur % 3600 > 0) {
+                // 不足一小时按一小时算
+                parkingHour += 1;
+            }
+        } else {
+            parkingHour = 0;  // 前半小时免费
+        }
+
+        return parkingHour * feePerHour;
 	}
 		
     /*
@@ -44,9 +41,10 @@ public class CrazyMoncky {
     * @param  licenseID 车牌号
     * @return 是否成功录入
 	*/ 
-   private static Boolean enter(String licenseID) {
-       return true;
-   } 
+    private static Boolean enter(String licenseID) {
+        // 创建一个以licenseid为名称的文件，写入入场的时间戳
+        return true;
+    } 
 
 
     /*
@@ -54,9 +52,10 @@ public class CrazyMoncky {
     * @param  licenseID 车牌号
     * @return 停车费用
 	*/
-   private static int leave(String licenseID) {
-       return 0;
-   }
+    private static int leave(String licenseID) {
+        // 读取licenseid为名称的文件，计算停车时间和费用
+        return 0;
+    }
 
 
     /*
