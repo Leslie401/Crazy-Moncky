@@ -1,6 +1,9 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import com.oracle.tools.packager.RelativeFileSet.Type;
+
 import static java.lang.Math.toIntExact;
 
 
@@ -36,8 +39,24 @@ public class CrazyMoncky {
 		}
 	}
 		
-		 
-    
+    /*
+    * 车辆进入 
+    * @param  licenseID 车牌号
+    * @return 是否成功录入
+	*/ 
+   private static Boolean enter(String licenseID) {
+       return true;
+   } 
+
+
+    /*
+    * 车辆离开
+    * @param  licenseID 车牌号
+    * @return 停车费用
+	*/
+   private static int leave(String licenseID) {
+       return 0;
+   }
 
 
     /*
@@ -45,24 +64,28 @@ public class CrazyMoncky {
      * java CrazyMoncky '2018-01-01 00:00:00' '2018-01-01 01:00:00'
      */
     public static void main(String[] args) {
-        int parkingFee;  
-        long parkingDur; 
-        String enterTimeStr, leaveTimeStr;
-        LocalDateTime enterTime, leaveTime;
-        DateTimeFormatter formatter;
+        String action, licenseID;
+        Boolean eStat;
+        int parkingFee;
 
-        enterTimeStr = args[0];
-        leaveTimeStr = args[1];
+        action = args[0];
+        licenseID = args[1];
 
-        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        enterTime = LocalDateTime.parse(enterTimeStr, formatter);
-        leaveTime = LocalDateTime.parse(leaveTimeStr, formatter);
-
-        parkingDur = Duration.between(enterTime, leaveTime).getSeconds();
-        parkingFee = calParkingFee(toIntExact(parkingDur));
-        
-        System.out.printf("total parking time %d, fee %d, please!\n",
-                          parkingDur, parkingFee);
+        if (action.equals("e")) {
+            eStat = enter(licenseID);
+            if (eStat) {
+                System.out.printf("Major Lee, entered, have fun\n");
+            } else {
+                System.out.printf("please go back and try again\n");
+            }
+        }  else if (action.equals("l")) {
+            parkingFee = leave(licenseID);
+            System.out.printf("total parking fee %d, please!\n", parkingFee);
+        } else {
+            System.out.printf(
+                "unknown action type %s, only 'e' or 'l' allowed!\n",
+                action
+            ); 
+        }
     }
-
 }
